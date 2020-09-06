@@ -3,6 +3,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { catchError, map } from 'rxjs/operators';
 import { Observable, throwError } from 'rxjs';
 import { Person, Pet, PetsByOwnerGender } from '../index.d';
+import { Gender, Pets } from '../shared/enums';
 
 @Injectable({
   providedIn: 'root'
@@ -19,12 +20,12 @@ export class PetService {
         map((people: Person[]): PetsByOwnerGender[] => {
           return [
             {
-              gender: 'Male',
-              cats: this.getCats(people, 'Male'),
+              gender: Gender.MALE,
+              cats: this.getCats(people, Gender.MALE),
             },
             {
-              gender: 'Female',
-              cats: this.getCats(people, 'Female'),
+              gender: Gender.FEMALE,
+              cats: this.getCats(people, Gender.FEMALE),
             },
           ];
         }),
@@ -37,7 +38,7 @@ export class PetService {
 
   private getCats(people: Person[], gender: string): Pet[] {
     const peopleByGender = people.filter(person => person.gender === gender);
-    return this.getPets(peopleByGender, 'Cat');
+    return this.getPets(peopleByGender, Pets.CAT);
   }
 
   private getPets(people: Person[], petType: string): Pet[] {
