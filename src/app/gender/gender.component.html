@@ -1,9 +1,17 @@
-<mat-list>
-  <ng-container *ngFor="let genderGroup of catsAlphabeticallyByOwnersGender$ | async">
-    <h3 matSubheader>{{ genderGroup.gender }}</h3>
-    <mat-list-item *ngFor="let cat of genderGroup.cats">
-      <h4 matLine>{{cat.name}}</h4>
-    </mat-list-item>
-    <mat-divider></mat-divider>
-</ng-container>
-</mat-list>
+
+<div class="grid-container">
+  <mat-grid-list
+    class="grid-list"
+    [cols]="(layout$ | async)?.columns"
+    [rowHeight]="(layout$ | async)?.rowHeight">
+    <mat-grid-tile *ngFor="let genderGroup of catsAlphabeticallyByOwnersGender$ | async">
+      <app-card [title]="genderGroup.gender">
+        <mat-list>
+          <mat-list-item *ngFor="let cat of genderGroup.cats">
+            <h4 matLine>{{cat.name}}</h4>
+          </mat-list-item>
+        </mat-list>
+      </app-card>
+    </mat-grid-tile>
+  </mat-grid-list>
+ </div>
