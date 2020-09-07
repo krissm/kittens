@@ -1,14 +1,14 @@
 
-<div class="grid-container">
+<div class="grid-container" data-test-hook='gender-page'>
   <mat-grid-list
     class="grid-list"
     [cols]="(layout$ | async)?.columns"
     [rowHeight]="(layout$ | async)?.rowHeight">
     <mat-grid-tile *ngFor="let genderGroup of catsAlphabeticallyByOwnersGender$ | async">
-      <app-card [title]="genderGroup.gender">
+      <app-card [title]="genderGroup.gender" [attr.data-test-hook]="'gender-card-' + genderGroup.gender" data-test-hook='gender-card'>
         <mat-list>
           <mat-list-item *ngFor="let cat of genderGroup.cats">
-            <h4 matLine>{{cat.name}}</h4>
+            <h4 matLine data-test-hook='kittens'>{{ cat.name }}</h4>
           </mat-list-item>
         </mat-list>
       </app-card>

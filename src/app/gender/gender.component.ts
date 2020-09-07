@@ -43,10 +43,10 @@ export class GenderComponent implements OnInit {
     ]).pipe(
       map((state: BreakpointState) => {
         if (state.breakpoints[Breakpoints.XSmall] || state.breakpoints[Breakpoints.Small]) {
-          console.log( 'Matches smallScreen');
+          // console.log( 'Matches smallScreen');
           return this.smallScreen;
         } else if (state.breakpoints[Breakpoints.Medium] || state.breakpoints[Breakpoints.Large] || state.breakpoints[Breakpoints.XLarge]) {
-          console.log( 'Matches normalScreen');
+          // console.log( 'Matches normalScreen');
           return this.normalScreen;
         }
       })

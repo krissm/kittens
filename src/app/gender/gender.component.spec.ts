@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { GenderComponent } from './gender.component';
+import { SharedModule } from '../shared/shared.module';
 
 describe('GenderComponent', () => {
   let component: GenderComponent;
@@ -8,7 +9,10 @@ describe('GenderComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ GenderComponent ]
+      imports: [
+        SharedModule
+      ],
+      declarations: [ GenderComponent]
     })
     .compileComponents();
   });

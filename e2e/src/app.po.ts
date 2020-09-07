@@ -1,11 +1,17 @@
-import { browser, by, element } from 'protractor';
+import { browser } from 'protractor';
+import { RouteBase } from './helpers/base.route';
 
-export class AppPage {
+export class AppPage extends RouteBase {
+  heading = 'app-heading';
+
+  constructor() {
+    super('app-root', '/');
+  }
   navigateTo(): Promise<unknown> {
     return browser.get(browser.baseUrl) as Promise<unknown>;
   }
 
-  getTitleText(): Promise<string> {
-    return element(by.css('app-root .content span')).getText() as Promise<string>;
+  getHeading(): Promise<string> {
+    return this.getElement(this.heading).getText() as Promise<string>;
   }
 }
